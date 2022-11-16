@@ -1,0 +1,463 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css"><link rel="stylesheet" href="css/L.Control.Locate.min.css">
+        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <link rel="stylesheet" href="css/MarkerCluster.css">
+        <link rel="stylesheet" href="css/MarkerCluster.Default.css">
+        <link rel="stylesheet" href="css/leaflet-search.css">
+        <link rel="stylesheet" href="css/leaflet-control-geocoder.Geocoder.css">
+        <link rel="stylesheet" href="css/leaflet-measure.css">
+        <style>
+        html, body, #map {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script><script src="js/L.Control.Locate.min.js"></script>
+        <script src="js/leaflet-svg-shape-markers.min.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="js/leaflet-control-geocoder.Geocoder.js"></script>
+        <script src="js/leaflet-measure.js"></script>
+        <script src="js/leaflet.markercluster.js"></script>
+        <script src="js/leaflet-search.js"></script>
+        <script src="data/India_State_Boundary_0.js"></script>
+        <script src="data/guj_diu_st_bound_1.js"></script>
+        <script src="data/Dist_guj_diu_2.js"></script>
+        <script src="data/Caaqms_station_4.js"></script>
+        <script src="data/NWMP_guj_5.js"></script>
+        <script>
+        var highlightLayer;
+        function highlightFeature(e) {
+            highlightLayer = e.target;
+            highlightLayer.openPopup();
+        }
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:28, minZoom:1
+        }).fitBounds([[20.001538482763006,66.92109745084014],[24.88186551035402,75.51882225504835]]);
+        var hash = new L.Hash(map);
+        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
+        var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
+        L.control.locate({locateOptions: {maxZoom: 19}}).addTo(map);
+        var measureControl = new L.Control.Measure({
+            position: 'topleft',
+            primaryLengthUnit: 'meters',
+            secondaryLengthUnit: 'kilometers',
+            primaryAreaUnit: 'sqmeters',
+            secondaryAreaUnit: 'hectares'
+        });
+        measureControl.addTo(map);
+        document.getElementsByClassName('leaflet-control-measure-toggle')[0]
+        .innerHTML = '';
+        document.getElementsByClassName('leaflet-control-measure-toggle')[0]
+        .className += ' fas fa-ruler';
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+            map.setMaxBounds(map.getBounds());
+        }
+        function pop_India_State_Boundary_0(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    if (typeof layer.closePopup == 'function') {
+                        layer.closePopup();
+                    } else {
+                        layer.eachLayer(function(feature){
+                            feature.closePopup()
+                        });
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+        }
+
+        function style_India_State_Boundary_0_0() {
+            return {
+                pane: 'pane_India_State_Boundary_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(164,113,88,0.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_India_State_Boundary_0');
+        map.getPane('pane_India_State_Boundary_0').style.zIndex = 400;
+        map.getPane('pane_India_State_Boundary_0').style['mix-blend-mode'] = 'normal';
+        var layer_India_State_Boundary_0 = new L.geoJson(json_India_State_Boundary_0, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_India_State_Boundary_0',
+            layerName: 'layer_India_State_Boundary_0',
+            pane: 'pane_India_State_Boundary_0',
+            onEachFeature: pop_India_State_Boundary_0,
+            style: style_India_State_Boundary_0_0,
+        });
+        bounds_group.addLayer(layer_India_State_Boundary_0);
+        map.addLayer(layer_India_State_Boundary_0);
+        function pop_guj_diu_st_bound_1(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    if (typeof layer.closePopup == 'function') {
+                        layer.closePopup();
+                    } else {
+                        layer.eachLayer(function(feature){
+                            feature.closePopup()
+                        });
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+        }
+
+        function style_guj_diu_st_bound_1_0(feature) {
+            switch(String(feature.properties['Name'])) {
+                case 'Gujarat':
+                    return {
+                pane: 'pane_guj_diu_st_bound_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(169,169,169,0.5333333333333333)',
+                interactive: true,
+            }
+                    break;
+                case 'Daman and Diu and Dadra and Nagar Haveli':
+                    return {
+                pane: 'pane_guj_diu_st_bound_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(230,209,17,0.6705882352941176)',
+                interactive: true,
+            }
+                    break;
+            }
+        }
+        map.createPane('pane_guj_diu_st_bound_1');
+        map.getPane('pane_guj_diu_st_bound_1').style.zIndex = 401;
+        map.getPane('pane_guj_diu_st_bound_1').style['mix-blend-mode'] = 'normal';
+        var layer_guj_diu_st_bound_1 = new L.geoJson(json_guj_diu_st_bound_1, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_guj_diu_st_bound_1',
+            layerName: 'layer_guj_diu_st_bound_1',
+            pane: 'pane_guj_diu_st_bound_1',
+            onEachFeature: pop_guj_diu_st_bound_1,
+            style: style_guj_diu_st_bound_1_0,
+        });
+        bounds_group.addLayer(layer_guj_diu_st_bound_1);
+        map.addLayer(layer_guj_diu_st_bound_1);
+        function pop_Dist_guj_diu_2(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    if (typeof layer.closePopup == 'function') {
+                        layer.closePopup();
+                    } else {
+                        layer.eachLayer(function(feature){
+                            feature.closePopup()
+                        });
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+        }
+
+        function style_Dist_guj_diu_2_0() {
+            return {
+                pane: 'pane_Dist_guj_diu_2',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(125,139,143,0.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_Dist_guj_diu_2');
+        map.getPane('pane_Dist_guj_diu_2').style.zIndex = 402;
+        map.getPane('pane_Dist_guj_diu_2').style['mix-blend-mode'] = 'normal';
+        var layer_Dist_guj_diu_2 = new L.geoJson(json_Dist_guj_diu_2, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Dist_guj_diu_2',
+            layerName: 'layer_Dist_guj_diu_2',
+            pane: 'pane_Dist_guj_diu_2',
+            onEachFeature: pop_Dist_guj_diu_2,
+            style: style_Dist_guj_diu_2_0,
+        });
+        bounds_group.addLayer(layer_Dist_guj_diu_2);
+        map.addLayer(layer_Dist_guj_diu_2);
+        map.createPane('pane_OSMStandard_3');
+        map.getPane('pane_OSMStandard_3').style.zIndex = 403;
+        var layer_OSMStandard_3 = L.tileLayer('http://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            pane: 'pane_OSMStandard_3',
+            opacity: 0.5,
+            attribution: '<a href="https://www.openstreetmap.org/copyright">© OpenStreetMap contributors, CC-BY-SA</a>',
+            minZoom: 1,
+            maxZoom: 28,
+            minNativeZoom: 0,
+            maxNativeZoom: 19
+        });
+        layer_OSMStandard_3;
+        map.addLayer(layer_OSMStandard_3);
+        function pop_Caaqms_station_4(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    if (typeof layer.closePopup == 'function') {
+                        layer.closePopup();
+                    } else {
+                        layer.eachLayer(function(feature){
+                            feature.closePopup()
+                        });
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">State</th>\
+                        <td>' + (feature.properties['State'] !== null ? autolinker.link(feature.properties['State'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">City</th>\
+                        <td>' + (feature.properties['City'] !== null ? autolinker.link(feature.properties['City'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Station_Na</th>\
+                        <td>' + (feature.properties['Station_Na'] !== null ? autolinker.link(feature.properties['Station_Na'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Caaqms_station_4_0() {
+            return {
+                pane: 'pane_Caaqms_station_4',
+                radius: 6.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(42,199,21,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_Caaqms_station_4');
+        map.getPane('pane_Caaqms_station_4').style.zIndex = 404;
+        map.getPane('pane_Caaqms_station_4').style['mix-blend-mode'] = 'normal';
+        var layer_Caaqms_station_4 = new L.geoJson(json_Caaqms_station_4, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Caaqms_station_4',
+            layerName: 'layer_Caaqms_station_4',
+            pane: 'pane_Caaqms_station_4',
+            onEachFeature: pop_Caaqms_station_4,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.shapeMarker(latlng, style_Caaqms_station_4_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_Caaqms_station_4);
+        map.addLayer(layer_Caaqms_station_4);
+        function pop_NWMP_guj_5(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    if (typeof layer.closePopup == 'function') {
+                        layer.closePopup();
+                    } else {
+                        layer.eachLayer(function(feature){
+                            feature.closePopup()
+                        });
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">STN_Code</th>\
+                        <td>' + (feature.properties['STN_Code'] !== null ? autolinker.link(feature.properties['STN_Code'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">STN_Name</th>\
+                        <td>' + (feature.properties['STN_Name'] !== null ? autolinker.link(feature.properties['STN_Name'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">District</th>\
+                        <td>' + (feature.properties['District'] !== null ? autolinker.link(feature.properties['District'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Water_body</th>\
+                        <td>' + (feature.properties['Water_body'] !== null ? autolinker.link(feature.properties['Water_body'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Name_WB</th>\
+                        <td>' + (feature.properties['Name_WB'] !== null ? autolinker.link(feature.properties['Name_WB'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Basin</th>\
+                        <td>' + (feature.properties['Basin'] !== null ? autolinker.link(feature.properties['Basin'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Sub_Basin</th>\
+                        <td>' + (feature.properties['Sub_Basin'] !== null ? autolinker.link(feature.properties['Sub_Basin'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Frequency</th>\
+                        <td>' + (feature.properties['Frequency'] !== null ? autolinker.link(feature.properties['Frequency'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Latitude</th>\
+                        <td>' + (feature.properties['Latitude'] !== null ? autolinker.link(feature.properties['Latitude'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Longitude</th>\
+                        <td>' + (feature.properties['Longitude'] !== null ? autolinker.link(feature.properties['Longitude'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_NWMP_guj_5_0() {
+            return {
+                pane: 'pane_NWMP_guj_5',
+                radius: 4.8,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(0,0,255,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_NWMP_guj_5');
+        map.getPane('pane_NWMP_guj_5').style.zIndex = 405;
+        map.getPane('pane_NWMP_guj_5').style['mix-blend-mode'] = 'normal';
+        var layer_NWMP_guj_5 = new L.geoJson(json_NWMP_guj_5, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_NWMP_guj_5',
+            layerName: 'layer_NWMP_guj_5',
+            pane: 'pane_NWMP_guj_5',
+            onEachFeature: pop_NWMP_guj_5,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_NWMP_guj_5_0(feature));
+            },
+        });
+        var cluster_NWMP_guj_5 = new L.MarkerClusterGroup({showCoverageOnHover: false,
+            spiderfyDistanceMultiplier: 2});
+        cluster_NWMP_guj_5.addLayer(layer_NWMP_guj_5);
+
+        bounds_group.addLayer(layer_NWMP_guj_5);
+        cluster_NWMP_guj_5.addTo(map);
+        var osmGeocoder = new L.Control.Geocoder({
+            collapsed: true,
+            position: 'topleft',
+            text: 'Search',
+            title: 'Testing'
+        }).addTo(map);
+        document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
+        .className += ' fa fa-search';
+        document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
+        .title += 'Search for a place';
+        var baseMaps = {};
+        L.control.layers(baseMaps,{'<img src="legend/NWMP_guj_5.png" /> NWMP_guj': cluster_NWMP_guj_5,'<img src="legend/Caaqms_station_4.png" /> Caaqms_station': layer_Caaqms_station_4,"OSM Standard": layer_OSMStandard_3,'<img src="legend/Dist_guj_diu_2.png" /> Dist_guj_diu': layer_Dist_guj_diu_2,'guj_diu_st_bound<br /><table><tr><td style="text-align: center;"><img src="legend/guj_diu_st_bound_1_Gujarat0.png" /></td><td>Gujarat</td></tr><tr><td style="text-align: center;"><img src="legend/guj_diu_st_bound_1_DamanandDiuandDadraandNagarHaveli1.png" /></td><td>Daman and Diu and Dadra and Nagar Haveli</td></tr></table>': layer_guj_diu_st_bound_1,'<img src="legend/India_State_Boundary_0.png" /> India_State_Boundary': layer_India_State_Boundary_0,}).addTo(map);
+        setBounds();
+        var i = 0;
+        layer_Dist_guj_diu_2.eachLayer(function(layer) {
+            var context = {
+                feature: layer.feature,
+                variables: {}
+            };
+            layer.bindTooltip((layer.feature.properties['DISTRICT'] !== null?String('<div style="color: #1f78b4; font-size: 8pt; font-family: \'Arial\', sans-serif;">' + layer.feature.properties['DISTRICT']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_Dist_guj_diu_2'});
+            labels.push(layer);
+            totalMarkers += 1;
+              layer.added = true;
+              addLabel(layer, i);
+              i++;
+        });
+        var i = 0;
+        layer_NWMP_guj_5.eachLayer(function(layer) {
+            var context = {
+                feature: layer.feature,
+                variables: {}
+            };
+            layer.bindTooltip((layer.feature.properties['STN_Code'] !== null?String('<div style="color: #323232; font-size: 10pt; font-family: \'Arial\', sans-serif;">' + layer.feature.properties['STN_Code']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_NWMP_guj_5'});
+            labels.push(layer);
+            totalMarkers += 1;
+              layer.added = true;
+              addLabel(layer, i);
+              i++;
+        });
+        map.addControl(new L.Control.Search({
+            layer: cluster_guj_diu_st_bound_1,
+            initial: false,
+            hideMarkerOnCollapse: true,
+            propertyName: 'Name'}));
+        document.getElementsByClassName('search-button')[0].className +=
+         ' fa fa-binoculars';
+        resetLabels([layer_Dist_guj_diu_2,layer_Caaqms_station_4,layer_NWMP_guj_5]);
+        map.on("zoomend", function(){
+            resetLabels([layer_Dist_guj_diu_2,layer_Caaqms_station_4,layer_NWMP_guj_5]);
+        });
+        map.on("layeradd", function(){
+            resetLabels([layer_Dist_guj_diu_2,layer_Caaqms_station_4,layer_NWMP_guj_5]);
+        });
+        map.on("layerremove", function(){
+            resetLabels([layer_Dist_guj_diu_2,layer_Caaqms_station_4,layer_NWMP_guj_5]);
+        });
+        </script>
+    </body>
+</html>
